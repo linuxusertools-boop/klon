@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KEVCODEX WA</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Helvetica, Arial, sans-serif; background-color: #0b141a; color: #e9edef; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+        .header { background-color: #202c33; padding: 10px 16px; display: flex; align-items: center; box-shadow: 0 1px 3px rgba(0,0,0,0.4); z-index: 10; }
+        .avatar { width: 40px; height: 40px; background: #00a884; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+        .header-info { margin-left: 12px; flex: 1; }
+        .header-info h1 { font-size: 16px; font-weight: 500; display: flex; align-items: center; gap: 5px; }
+        .header-info p { font-size: 12px; color: #8696a0; }
+        #chat-container { flex: 1; overflow-y: auto; padding: 15px; background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); background-blend-mode: overlay; background-color: #0b141a; display: flex; flex-direction: column; gap: 8px; }
+        .message { max-width: 80%; padding: 8px 12px; border-radius: 8px; font-size: 14.5px; line-height: 1.4; position: relative; word-wrap: break-word; }
+        .user-msg { align-self: flex-end; background-color: #005c4b; border-top-right-radius: 0; }
+        .ai-msg { align-self: flex-start; background-color: #202c33; border-top-left-radius: 0; }
+        .stc-msg { background: transparent !important; box-shadow: none !important; padding: 0 !important; border: none !important; align-self: flex-start; }
+        .whatsapp-sticker { width: 150px; height: auto; display: block; margin: 5px 0; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4)); }
+        .time { font-size: 10px; color: #8696a0; margin-top: 4px; text-align: right; display: block; }
+        .input-area { background-color: #202c33; padding: 10px; display: flex; align-items: center; gap: 8px; }
+        input { flex: 1; background-color: #2a3942; border: none; padding: 12px 16px; border-radius: 25px; color: #d1d7db; outline: none; font-size: 15px; }
+        button { background: #00a884; border: none; width: 45px; height: 45px; border-radius: 50%; color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        button:disabled { opacity: 0.5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="avatar">KC</div>
+        <div class="header-info">
+            <h1>KEVCODEX <svg viewBox="0 0 24 24" width="16" height="16" fill="#00a884"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7l-3.8-3.8L7.7 11.5l2.4 2.4 5.6-5.6 1.4 1.4-7 7z"></path></svg></h1>
+            <p>Online</p>
+        </div>
+    </div>
+    <div id="chat-container"></div>
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Ketik pesan..." autocomplete="off">
+        <button id="sendBtn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M1.101 21.757L23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"></path></svg></button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
