@@ -3,251 +3,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KEVCODEX | KEVAI</title>
+    <title>CREATED BY KEVCODEX</title>
     <style>
+        /* Telegram Desktop/Mobile Dark Palette */
         :root {
-            --bg-color: #f0eee4; /* Krem Khas Logo */
-            --accent-color: #000000;
-            --white: #ffffff;
-            --border-thick: 6px solid #000000;
-            --border-thin: 3px solid #000000;
+            --tg-bg: #0e1621;
+            --tg-header: #17212b;
+            --tg-user-msg: #2b5278;
+            --tg-ai-msg: #182533;
+            --tg-text: #f5f5f5;
+            --tg-subtext: #708499;
+            --tg-accent: #5288c1;
+            --tg-input-bg: #17212b;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         body { 
-            font-family: 'Arial Black', 'Arial Bold', sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--accent-color); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--tg-bg); 
+            color: var(--tg-text); 
             height: 100vh; 
             display: flex; 
             flex-direction: column; 
-            overflow: hidden;
-            text-transform: uppercase;
-            position: relative;
+            overflow: hidden; 
         }
 
-
-        body::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.03) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.01));
-            z-index: 999;
-            background-size: 100% 3px, 3px 100%;
-            pointer-events: none;
-        }
-
-    
-        .marquee-top {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 6px 0;
-            font-size: 11px;
-            overflow: hidden;
-            white-space: nowrap;
-            border-bottom: var(--border-thin);
-            display: flex;
-            justify-content: space-between;
-        }
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 20s linear infinite;
-        }
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-
+        /* --- HEADER TELEGRAM --- */
         .header { 
-            background-color: var(--bg-color); 
-            padding: 15px 20px; 
+            background-color: var(--tg-header); 
+            padding: 8px 15px; 
             display: flex; 
             align-items: center; 
-            border-bottom: var(--border-thick);
+            height: 56px;
             z-index: 10;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
         
-        .avatar-frame {
-            width: 60px;
-            height: 60px;
-            border: var(--border-thin);
-            background: var(--white);
-            transform: rotate(-2deg);
-            box-shadow: 4px 4px 0px var(--accent-color);
+        .back-icon { margin-right: 20px; color: var(--tg-accent); cursor: pointer; }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
         }
-        .avatar { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        .header-info { margin-left: 20px; flex: 1; }
-        .header-info h1 { font-size: 26px; letter-spacing: -2px; line-height: 0.9; }
-        .status-badge { 
-            font-size: 10px; 
-            background: var(--accent-color); 
-            color: var(--bg-color);
-            padding: 2px 8px;
+        .avatar { 
+            width: 42px; 
+            height: 42px; 
+            border-radius: 50%; 
+            margin-right: 12px;
+            object-fit: cover;
+        }
+
+        .header-info h1 { 
+            font-size: 17px; 
+            font-weight: 600; 
+            line-height: 1.2;
+        }
+
+        /* Typing Status */
+        #status-text { 
+            font-size: 13px; 
+            color: var(--tg-accent); 
+        }
+        
+        .typing-dots::after {
+            content: '...';
             display: inline-block;
-            margin-top: 6px;
+            width: 12px;
+            text-align: left;
+            animation: dots 1.5s infinite;
+        }
+        @keyframes dots {
+            0% { content: '.'; }
+            33% { content: '..'; }
+            66% { content: '...'; }
         }
 
+        .header-actions { color: #808b99; display: flex; gap: 20px; }
 
+        /* --- CHAT AREA --- */
         #chat-container { 
             flex: 1; 
             overflow-y: auto; 
-            padding: 25px 20px; 
+            padding: 10px 12px; 
             display: flex; 
             flex-direction: column; 
-            gap: 20px;
-            background: radial-gradient(circle, #dcdbc9 1px, transparent 1px);
-            background-size: 25px 25px;
+            gap: 4px;
+            /* Wallpaper Telegram */
+            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+            background-size: 450px;
+            background-blend-mode: soft-light;
+            background-color: var(--tg-bg);
             scroll-behavior: smooth;
         }
-        
-    
+
+        /* --- MESSAGES --- */
         .message { 
-            max-width: 85%; 
-            padding: 15px; 
-            border: var(--border-thin);
-            font-size: 14px; 
-            font-weight: 900;
-            position: relative;
+            max-width: 80%; 
+            padding: 7px 12px 6px 12px; 
+            border-radius: 12px; 
+            font-size: 15px; 
+            line-height: 1.4; 
+            position: relative; 
+            word-wrap: break-word;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.2);
         }
 
         .user-msg { 
             align-self: flex-end; 
-            background-color: var(--accent-color); 
-            color: var(--bg-color);
-            box-shadow: 10px 10px 0px rgba(0,0,0,0.15);
+            background-color: var(--tg-user-msg); 
+            border-bottom-right-radius: 4px;
         }
 
         .ai-msg { 
             align-self: flex-start; 
-            background-color: var(--white); 
-            box-shadow: 10px 10px 0px var(--accent-color);
+            background-color: var(--tg-ai-msg); 
+            border-bottom-left-radius: 4px;
         }
-        
-        /* BADGE */
-        .msg-badge {
-            position: absolute;
-            top: -12px;
-            left: 10px;
-            background: var(--accent-color);
-            color: var(--bg-color);
-            font-size: 9px;
-            padding: 2px 6px;
-            border: 1px solid var(--bg-color);
-        }
-        .user-msg .msg-badge { left: auto; right: 10px; background: var(--white); color: #000; }
 
-
-        .stc-msg { border: none !important; background: transparent !important; box-shadow: none !important; }
+        /* Sticker Frame - Tetap dengan aksen border kaku sesuai keinginanmu */
+        .stc-msg { background: transparent !important; box-shadow: none !important; padding: 0 !important; }
         .stc-wrapper {
-            background: var(--white);
-            border: var(--border-thin);
+            background: #fff;
+            border: 3px solid #000;
             padding: 8px;
-            box-shadow: 10px 10px 0px var(--accent-color);
+            box-shadow: 6px 6px 0px #000;
             display: inline-block;
+            margin-bottom: 5px;
         }
-        .whatsapp-sticker { width: 150px; height: 150px; display: block; }
-        
-        .time { font-size: 9px; margin-top: 10px; display: block; opacity: 0.6; font-family: monospace; }
+        .whatsapp-sticker { width: 140px; height: 140px; display: block; }
 
-
-        .input-area { 
-            background-color: var(--accent-color); 
-            padding: 20px; 
-            display: flex; 
-            gap: 15px;
-            border-top: var(--border-thick);
+        .time { 
+            font-size: 11px; 
+            color: rgba(255, 255, 255, 0.4); 
+            margin-left: 10px;
+            float: right;
+            margin-top: 4px;
         }
 
-        .input-container {
+        /* --- FOOTER --- */
+        .footer {
+            padding: 8px;
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+            background-color: var(--tg-header);
+        }
+
+        .input-bar {
             flex: 1;
             display: flex;
             align-items: center;
-            background: var(--bg-color);
-            border: var(--border-thin);
-            padding-left: 15px;
         }
 
-        .prefix { font-weight: 900; margin-right: 10px; }
+        .icon-btn { color: #808b99; padding: 8px; cursor: pointer; }
 
         input { 
-            width: 100%;
+            flex: 1; 
             background: transparent; 
             border: none; 
-            padding: 15px 0; 
-            color: var(--accent-color); 
+            color: var(--tg-text); 
             outline: none; 
-            font-family: inherit;
-            font-weight: 900;
-            font-size: 16px;
+            font-size: 16px; 
+            padding: 10px;
         }
 
-        button { 
-            background: var(--bg-color); 
-            border: var(--border-thin); 
-            padding: 0 30px;
-            font-family: inherit;
-            font-weight: 900;
+        .send-btn { 
+            color: var(--tg-accent); 
+            background: transparent;
+            border: none; 
+            padding: 10px;
             cursor: pointer;
-            transition: 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        button:hover { background: var(--white); transform: translate(-3px, -3px); box-shadow: 6px 6px 0px #666; }
-        button:active { transform: translate(0, 0); box-shadow: none; }
-
-        
-        #chat-container::-webkit-scrollbar { width: 14px; border-left: var(--border-thin); }
-        #chat-container::-webkit-scrollbar-thumb { background: var(--accent-color); }
+        /* Scrollbar */
+        #chat-container::-webkit-scrollbar { width: 4px; }
+        #chat-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="marquee-top">
-        <div class="marquee-content">
-            KEVCODEX SYSTEM v1.0 // STATUS: OPERATIONAL // AUTHOR: KEVIN // MODE: BRUTALIST // NO RULES // SECURITY: STABLE // 
-            KEVCODEX SYSTEM v1.0 // STATUS: OPERATIONAL // AUTHOR: KEVIN // MODE: BRUTALIST // NO RULES // SECURITY: STABLE // 
-        </div>
-        <span id="sys-clock" style="padding: 0 15px; font-weight: bold; background: #000; z-index: 10;">00:00:00</span>
-    </div>
-
     <div class="header">
-        <div class="avatar-frame">
-            <img src="https://c.termai.cc/i141/WUSOXU.jpg" alt="KEV" class="avatar">
+        <div class="back-icon">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>
         </div>
-        <div class="header-info">
-            <h1>KEVCODEX<br>SYSTEM</h1>
-            <div class="status-badge">CONNECTED // PORT 443</div>
+        <div class="profile-container">
+            <img src="https://c.termai.cc/i141/WUSOXU.jpg" class="avatar" alt="Kev">
+            <div class="header-info">
+                <h1>KEVCODEX</h1>
+                <p id="status-text">bot</p> </div>
+        </div>
+        <div class="header-actions">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg>
         </div>
     </div>
 
     <div id="chat-container">
         </div>
 
-    <div class="input-area">
-        <div class="input-container">
-            <span class="prefix">></span>
-            <input type="text" id="userInput" placeholder="TYPE COMMAND..." autocomplete="off">
+    <div class="footer">
+        <div class="icon-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path></svg>
         </div>
-        <button id="sendBtn">EXECUTE</button>
+        <div class="input-bar">
+            <input type="text" id="userInput" placeholder="Pesan" autocomplete="off">
+        </div>
+        <div class="icon-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M16.5 6v11.5c0 2.21-1.79 4-4 4s-4-1.79-4-4V5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5v10.5c0 .55-.45 1-1 1s-1-.45-1-1V6H10v9.5c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5V5c0-2.21-1.79-4-4-4S7 2.79 7 5v12.5c0 3.31 2.69 6 6 6s6-2.69 6-6V6h-1.5z"></path></svg>
+        </div>
+        <button class="send-btn" id="sendBtn">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+        </button>
     </div>
 
-    <script>
-    
-        function updateClock() {
-            const now = new Date();
-            const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
-                            now.getMinutes().toString().padStart(2, '0') + ":" + 
-                            now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('sys-clock').innerText = timeStr;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
-
